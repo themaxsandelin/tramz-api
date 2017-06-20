@@ -25,6 +25,6 @@ api.get('/token', (req, res, next) => {
   });
 });
 
-api.listen(80, () => {
+api.listen(3000, () => {
   console.log('API up and running. 🎉');
 });
