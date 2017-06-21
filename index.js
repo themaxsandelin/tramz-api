@@ -6,10 +6,10 @@ const dotenv = require('dotenv').config();
 const useragent = require('express-useragent');
 
 const api = express();
+const now = moment();
 
 api.use(useragent.express());
 api.use((req, res, next) => {
-  const now = moment();
   const ua = {
     ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
     path: req.originalUrl,
@@ -48,9 +48,12 @@ api.get('/token', (req, res) => {
   }, (error, response, body) => {
     if (error) reject(error);
 
-    const token = JSON.parse(body).access_token;
+    const results = JSON.parse(body);
     res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify({ token: token }));
+    res.send(JSON.stringify({
+      token: results.access_token,
+      expires: parseInt(now.add(results.expires_in, 'seconds').format('X'))
+    }));
   });
 });
 
