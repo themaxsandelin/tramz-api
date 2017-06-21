@@ -20,8 +20,9 @@ api.get('/token', (req, res, next) => {
   }, (error, response, body) => {
     if (error) reject(error);
 
+    const token = JSON.parse(body).access_token;
     res.set('Content-Type', 'application/json');
-    res.send(body);
+    res.send(JSON.stringify({ token: token }));
   });
 });
 
