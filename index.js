@@ -56,13 +56,13 @@ api.get('/token', (req, res) => {
   });
 });
 
-api.get('/planKey', (req, res) => {
+api.get('/keys/plan', (req, res) => {
   res.json({
     key: process.env.PLANKEY
   });
 });
 
-api.get('/listKey', (req, res) => {
+api.get('/keys/list', (req, res) => {
   res.json({
     key: process.env.LISTKEY
   });
