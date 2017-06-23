@@ -49,11 +49,22 @@ api.get('/token', (req, res) => {
     if (error) reject(error);
 
     const results = JSON.parse(body);
-    res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify({
+    res.json({
       token: results.access_token,
       expires: parseInt(now.add(results.expires_in, 'seconds').format('X'))
-    }));
+    });
+  });
+});
+
+api.get('/planKey', (req, res) => {
+  res.json({
+    key: process.env.PLANKEY
+  });
+});
+
+api.get('/listKey', (req, res) => {
+  res.json({
+    key: process.env.LISTKEY
   });
 });
 
