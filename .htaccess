@@ -1,0 +1,6 @@
+ErrorDocument 404 /404
+
+RewriteEngine on
+RewriteRule ^/?404$ /404.php
+RewriteRule ^/?token$ /token.php
+RewriteRule ^/?keys/([a-z]+)$ /keys.php?key=$1
